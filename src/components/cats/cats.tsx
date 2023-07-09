@@ -26,6 +26,7 @@ export const Cats = () => {
       {cat.name}
     </div>
   ))
+
   const noCats = !state.length && <div className='pt-100 light-text'>No cats have been added</div>
 
   return (
