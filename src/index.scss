@@ -1,0 +1,57 @@
+@mixin classBuilder($selector, $property, $start, $end) {
+  @for $i from $start through $end {
+    .#{$selector}-#{$i}00 {
+      #{$property}: #{$i}em;
+    }
+    .#{$selector}-#{$i}25 {
+      #{$property}: #{$i + 0.25}em;
+    }
+    .#{$selector}-#{$i}50 {
+      #{$property}: #{$i + 0.5}em;
+    }
+    .#{$selector}-#{$i}75 {
+      #{$property}: #{$i + 0.75}em;
+    }
+  }
+}
+
+@include classBuilder('fs', 'font-size', 0, 5);
+@include classBuilder('p', 'padding', 0, 5);
+@include classBuilder('pt', 'padding-top', 0, 5);
+@include classBuilder('pr', 'padding-right', 0, 5);
+@include classBuilder('pb', 'padding-bottom', 0, 5);
+@include classBuilder('pl', 'padding-left', 0, 5);
+@include classBuilder('m', 'margin', 0, 5);
+@include classBuilder('mt', 'margin-top', 0, 5);
+@include classBuilder('mr', 'margin-right', 0, 5);
+@include classBuilder('mb', 'margin-bottom', 0, 5);
+@include classBuilder('ml', 'margin-left', 0, 5);
+
+:root {
+  --gray-900: #22262a;
+  --gray-800: #2e3235;
+  --gray-700: #495057;
+  --gray-600: #6c757d;
+  --gray-500: #adb5bd;
+  --gray-400: #ced4da;
+  --gray-300: #dee2e6;
+  --gray-200: #eff2f5;
+  --gray-100: #f8f9fa;
+  --gray-000: #fafafa;
+}
+
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--gray-100);
+}
+
+.light-text {
+  color: var(--gray-500);
+}
+
+.medium-text {
+  color: var(--gray-600);
+}
