@@ -1,12 +1,11 @@
 import { useState, ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Button, Input, message } from 'antd'
-import { Cat, addCat, catSelector } from 'store/slices/catSlice'
+import { Cat } from 'store/slices/catSlice'
+import { useCatReducer } from 'store/hooks/useCatReducer'
 
 export const Cats = () => {
   const [name, setName] = useState('')
-  const state = useSelector(catSelector)
-  const dispatch = useDispatch()
+  const { catState, addCatName } = useCatReducer()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)
 
@@ -17,17 +16,17 @@ export const Cats = () => {
       return
     }
 
-    dispatch(addCat({ name }))
+    addCatName(name)
     setName('')
   }
 
-  const cats = state.map((cat: Cat, index: number) => (
+  const cats = catState.map((cat: Cat, index: number) => (
     <div key={index} className='pt-100 medium-text'>
       {cat.name}
     </div>
   ))
 
-  const noCats = !state.length && <div className='pt-100 light-text'>No cats have been added</div>
+  const noCats = !catState.length && <div className='pt-100 light-text'>No cats have been added</div>
 
   return (
     <div className='m-200'>

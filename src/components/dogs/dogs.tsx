@@ -1,12 +1,11 @@
 import { useState, ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Button, Input, message } from 'antd'
-import { Dog, addDog, dogSelector } from 'store/slices/dogSlice'
+import { Dog } from 'store/slices/dogSlice'
+import { useDogReducer } from 'store/hooks/useDogReducer'
 
 export const Dogs = () => {
   const [name, setName] = useState('')
-  const state = useSelector(dogSelector)
-  const dispatch = useDispatch()
+  const { dogState, addDogName } = useDogReducer()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)
 
@@ -17,17 +16,17 @@ export const Dogs = () => {
       return
     }
 
-    dispatch(addDog({ name }))
+    addDogName(name)
     setName('')
   }
 
-  const dogs = state.map((dog: Dog, index: number) => (
+  const dogs = dogState.map((dog: Dog, index: number) => (
     <div key={index} className='pt-100 medium-text'>
       {dog.name}
     </div>
   ))
 
-  const noDogs = !state.length && <div className='pt-100 light-text'>No Dogs have been added</div>
+  const noDogs = !dogState.length && <div className='pt-100 light-text'>No Dogs have been added</div>
 
   return (
     <div className='m-200'>
