@@ -3,7 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, MenuProps } from 'antd'
 
 type Route = {
-  page: string,
+  page: string
   title: string
 }
 
@@ -12,12 +12,12 @@ const RouteLink = ({ page, title }: Route) => <Link to={`/${page}`}>{title}</Lin
 const items: MenuProps['items'] = [
   {
     label: <RouteLink page='dogs' title='Dogs' />,
-    key: 'dogs'
+    key: 'dogs',
   },
   {
     label: <RouteLink page='cats' title='Cats' />,
-    key: 'cats'
-  }
+    key: 'cats',
+  },
 ]
 
 export const Navigation = () => {

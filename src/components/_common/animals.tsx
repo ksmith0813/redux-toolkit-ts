@@ -35,7 +35,13 @@ export const Animals = ({ type, animals, addName }: AnimalProps) => {
 
   return (
     <div className='m-200'>
-      <Input onChange={onChange} value={name} placeholder='Add Cat' style={{ width: 200 }} />
+      <Input
+        onChange={onChange}
+        onPressEnter={onAddName}
+        value={name}
+        placeholder={`Add a ${type} name`}
+        style={{ width: 200 }}
+      />
       <Button onClick={onAddName} type='primary' className='ml-100'>
         Add
       </Button>
